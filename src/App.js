@@ -1,23 +1,39 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 
+function Header({ title }) {
+  return <h1>{title}</h1>;
+}
+
+function Counter({ label, start }) {
+  const [count, setCount] = useState(start);
+
+  return (
+    <div className="counter">
+      <h3>{label}</h3>
+      <p>Count: {count}</p>
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+    </div>
+  );
+}
+
+function UserCard({ user }) {
+  return (
+    <div className="user-card">
+      <p>Name: {user.name}</p>
+      <p>Email: {user.email}</p>
+    </div>
+  );
+}
+
 function App() {
+  const [user] = useState({ name: 'Ibukun', email: 'ibukun@example.com' });
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header title="My Debug App" />
+      <Counter label="Clicks" start={0} />
+      <UserCard user={user} />
     </div>
   );
 }
